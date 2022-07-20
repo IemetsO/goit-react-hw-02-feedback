@@ -1,8 +1,14 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const Notification = () => {
-    return(<p> There is no feedback </p>
-    )
-}
+const Notification = ({message}) => {
+  return <p> {message} </p>;
+};
 
-export default Notification
+export default Notification;
+
+Notification.propTypes = {
+    message: PropTypes.string.isRequired
+  };
+  
+

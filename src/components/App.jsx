@@ -11,15 +11,9 @@ class App extends React.Component {
     bad: 0,
   
 }
-handleGood = () => {
-  this.setState(prevState => ({ good: prevState.good + 1 }));
-};
-
-handleNeutral = () => {
-  this.setState(prevState => ({ neutral: prevState.neutral + 1 }));
-};
-handleBad = () => {
-  this.setState(prevState => ({ bad: prevState.bad + 1 }));
+handleStat = (e) => {
+  const key = e.currentTarget.textContent
+  this.setState(prevState => ({ [key]: prevState[key] + 1 }));
 };
 
  render() {
@@ -32,20 +26,13 @@ handleBad = () => {
     <div>
       <Section title="Please leave feedback">
         <FeedbackOptions
-        options={"good"}
-        onleaveFeedback={this.handleGood}
+        options={Object.keys(this.state)}
+        onleaveFeedback={this.handleStat}
         />
-        <FeedbackOptions
-        options={"neutral"}
-        onleaveFeedback={this.handleNeutral}
-        />
-        <FeedbackOptions
-        options={"bad"}
-        onleaveFeedback={this.handleBad}
-        />
+       
       </Section>
       {countTotalFeedback === 0 ? 
-      <Section><Notification></Notification></Section> :
+      <Section><Notification message="There is no feedback"></Notification></Section> :
       <Section title="Statistics">
       <Statistics
         good={good}
